@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="#FFEFFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+        <com.example.myphone.pager.MyBannerPager
+                android:id="@+id/banner_pager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
+        <LinearLayout
+                android:id="@+id/banner_point_container"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+        </LinearLayout>
+    </RelativeLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="- 推荐 -"
+            android:textSize="20dp"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center"
+            android:id="@+id/textView"/>
+    <FrameLayout
+            android:layout_marginTop="15dp"
+            android:id="@+id/main_page_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    </FrameLayout>
+</LinearLayout>

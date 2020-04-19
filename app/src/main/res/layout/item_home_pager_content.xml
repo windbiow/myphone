@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:background="@color/color_white"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+    <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/goods_cover"/>
+    <TextView
+            android:id="@+id/goods_title"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="石墨烯加热眼"
+    />
+    <TextView
+            android:text="¥19.80"
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"/>
+    <TextView
+            android:text="¥25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_Grey"/>
+    <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shap_tag_bg"
+            android:textColor="@color/color_white"
+            android:padding="2dp"
+            android:textSize="12sp"
+            android:text="热卖" />
+</LinearLayout>
