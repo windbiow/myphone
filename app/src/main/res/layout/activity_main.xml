@@ -8,11 +8,11 @@
         android:layout_height="match_parent">
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="350dp">
         <com.example.myphone.pager.MyBannerPager
                 android:id="@+id/banner_pager"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="350dp"/>
         <LinearLayout
                 android:id="@+id/banner_point_container"
                 android:layout_width="match_parent"
@@ -34,6 +34,7 @@
             android:id="@+id/textView"/>
     <FrameLayout
             android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
             android:id="@+id/main_page_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

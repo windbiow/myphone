@@ -2,9 +2,38 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/commodity_content"
+    <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commodity_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <LinearLayout
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:id="@+id/buy_view"
+                android:gravity="center"
+                android:background="@color/color_white"
+                android:layout_width="600dp"
+                android:layout_height="600dp">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30dp"
+                    android:text="请扫码支付"/>
+            <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/image_qrCode"/>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="返回"
+                    android:id="@+id/button_cancel"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
 </FrameLayout>

@@ -10,7 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.myphone.MainActivity;
 import com.example.myphone.R;
+import com.example.myphone.listener.RecyclerListener;
 import com.example.myphone.model.domain.Commodity;
 import com.example.myphone.util.Constants;
 
@@ -23,6 +25,11 @@ import java.util.List;
 public class HomePageContentAdapter extends RecyclerView.Adapter<HomePageContentAdapter.InnerHolder> {
 
     List<Commodity.DataBean> commodities =new ArrayList<>();
+    private MainActivity mContext;
+
+    public HomePageContentAdapter(MainActivity mContext){
+        this.mContext=mContext;
+    }
 
     @NonNull
     @Override
@@ -61,12 +68,6 @@ public class HomePageContentAdapter extends RecyclerView.Adapter<HomePageContent
             price=itemView.findViewById(R.id.price);
             category=itemView.findViewById(R.id.category);
             goods_cover=itemView.findViewById(R.id.goods_cover);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("点击商品-->",dataBean.getCommodityName());
-                }
-            });
         }
 
         public void setData(Commodity.DataBean dataBean) {
@@ -75,6 +76,7 @@ public class HomePageContentAdapter extends RecyclerView.Adapter<HomePageContent
             price.setText(String.valueOf(dataBean.getPrice()));
             category.setText(dataBean.getCategoryName());
             Glide.with(itemView.getContext()).load(Constants.KEY_HOME_PAGER_PREFIX+dataBean.getPicture()).into(goods_cover);
+            itemView.setOnClickListener(new RecyclerListener(mContext,dataBean.getId(),dataBean.getCount()));
         }
 
     }

@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,13 +51,12 @@ public class MainActivity extends AppCompatActivity{
         initListener();
     }
 
+
+
+    /**
+     * 初始化监听
+     */
     private void initListener() {
-        bannerPager.setPageItemClickListener(new MyBannerPager.OnPageItemClickListener() {
-            @Override
-            public void OnItemClick(int position) {
-                //TODO: 点击事件
-            }
-        });
         bannerPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity{
      * 初始化首页商品信息fragment
      */
     private void initFragments() {
-        homeFragment = new HomeFragment();
+        homeFragment = new HomeFragment(MainActivity.this);
         fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.main_page_container,homeFragment);

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.myphone.MainActivity;
 import com.example.myphone.R;
 import com.example.myphone.adapter.HomePageContentAdapter;
 import com.example.myphone.callback.IHomeCallback;
@@ -23,6 +24,11 @@ public class HomeFragment extends Fragment implements IHomeCallback {
 
     private HomePresenterImpl homePresenter;
     private HomePageContentAdapter contentAdapter;
+    private MainActivity mContext;
+
+    public HomeFragment(MainActivity mContext){
+        this.mContext=mContext;
+    }
 
     @Nullable
     @Override
@@ -53,7 +59,7 @@ public class HomeFragment extends Fragment implements IHomeCallback {
                 outRect.right = 5;
             }
         });
-        contentAdapter = new HomePageContentAdapter();
+        contentAdapter = new HomePageContentAdapter(mContext);
         content.setAdapter(contentAdapter);
     }
 
