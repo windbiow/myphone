@@ -1,30 +1,29 @@
 package com.example.myphone;
 
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.example.myphone.adapter.BannerPagerAdapter;
 import com.example.myphone.adapter.HomePageContentAdapter;
-import com.example.myphone.callback.IHomeCallback;
 import com.example.myphone.fragment.HomeFragment;
-import com.example.myphone.model.domain.Commodity;
+import com.example.myphone.mqtt.*;
 import com.example.myphone.pager.MyBannerPager;
 import com.example.myphone.util.SizeUtils;
 
-import androidx.core.content.ContextCompat;
+public class MainActivity extends AppCompatActivity  {
 
-public class MainActivity extends AppCompatActivity{
+    public static final int PAY_FLAG = 1;
+    public static final int OPEN_FLAG = 2;
+    public static Handler handler;
 
     private RecyclerView content;
     private HomePageContentAdapter contentAdapter;
@@ -33,9 +32,13 @@ public class MainActivity extends AppCompatActivity{
     private MyBannerPager bannerPager;
     private BannerPagerAdapter bannerPagerAdapter;
     private LinearLayout banner_point_container;
+    private LinearLayout buy_view;
+    private TextView textView;
     private AppCompatActivity SuperMainActivity=this;
 
     Integer[] banner={R.mipmap.banner1,R.mipmap.banner2,R.mipmap.banner3};
+    private Intent mqttService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +47,36 @@ public class MainActivity extends AppCompatActivity{
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
+        textView=findViewById(R.id.textView);
+
+
         bannerPager = findViewById(R.id.banner_pager);
         banner_point_container = findViewById(R.id.banner_point_container);
         initBanner();
         initFragments();
         initListener();
+        initMQTT();
+    }
+
+    private void initMQTT() {
+        mqttService = new Intent(MainActivity.this,AndoidMqttService.class);
+        startService(mqttService);
+        handler = new Handler(){
+
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if(msg.what==PAY_FLAG){
+                    TextView text_tips=findViewById(R.id.text_tips);
+                    text_tips.setText("付款完成,即将打开柜门");
+                }
+                if(msg.what==OPEN_FLAG){
+                    buy_view = findViewById(R.id.buy_view);
+                    buy_view.setVisibility(View.GONE);
+                }
+            }
+
+        };
     }
 
 
@@ -133,5 +161,11 @@ public class MainActivity extends AppCompatActivity{
         transaction.replace(R.id.main_page_container,homeFragment);
         transaction.commit();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 
 }

@@ -38,4 +38,8 @@ dependencies {
 
     //qrCode
     implementation 'com.google.zxing:core:3.3.0'
+
+    //mqtt
+    implementation group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.2.3'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
 }

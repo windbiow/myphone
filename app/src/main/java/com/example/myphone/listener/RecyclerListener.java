@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.example.myphone.MainActivity;
 import com.example.myphone.R;
 import com.example.myphone.util.QRCode;
@@ -37,6 +38,8 @@ public class RecyclerListener implements View.OnClickListener {
         ImageView image_qrCode = mContext.findViewById(R.id.image_qrCode);
         buy_view = mContext.findViewById(R.id.buy_view);
         Button button_cancel = mContext.findViewById(R.id.button_cancel);
+        TextView text_tips=mContext.findViewById(R.id.text_tips);
+        text_tips.setText("请扫码付款");
         buy_view.setVisibility(View.VISIBLE);
         image_qrCode.setImageBitmap(bitmap);
         button_cancel.setOnClickListener(new View.OnClickListener() {
